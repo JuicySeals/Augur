@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15
+    container_name: augur_db
+    environment:
+      POSTGRES_DB: augur
+      POSTGRES_USER: augur_user
+      POSTGRES_PASSWORD: augur_pass
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  mlflow:
+    image: ghcr.io/mlflow/mlflow:v2.9.0
+    container_name: augur_mlflow
+    ports:
+      - "5000:5000"
+    command: mlflow server --host 0.0.0.0 --backend-store-uri sqlite:///mlflow.db
+    volumes:
+      - mlflow_data:/mlflow
+
+volumes:
+  postgres_data:
+  mlflow_data:
