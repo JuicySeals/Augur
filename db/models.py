@@ -101,3 +101,8 @@ class Trades(Base):
     pnl = Column(Float)
     placed_at = Column(DateTime, default=datetime.utcnow)
     resolved_at = Column(DateTime)
+
+if __name__ == "__main__":
+    from db.session import engine
+    Base.metadata.create_all(bind=engine)
+    print("All tables created.")
