@@ -23,6 +23,8 @@ class Actuals(Base):
     actual_high = Column(Integer)
     actual_low = Column(Integer)
     observed_at = Column(DateTime)
+    version = Column(Integer)
+    is_final = Column(Boolean)
 
 class BiasCorrections(Base):
     __tablename__ = "bias_corrections"
