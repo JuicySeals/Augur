@@ -27,7 +27,8 @@ def get_forecasts(city_code: str, forecast_days: int = 3) -> list[dict]:
     for i, forecast_date in enumerate(dates):
         forecast_date_obj = date.fromisoformat(forecast_date)
         horizon_hrs = (forecast_date_obj - today).days * 24
-
+        if horizon_hrs < 0:
+            continue
         for api_key, model_name in API_KEY_TO_MODEL.items():
             high_key = f"temperature_2m_max_{api_key}"
             low_key = f"temperature_2m_min_{api_key}"

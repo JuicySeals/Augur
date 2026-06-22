@@ -1,5 +1,3 @@
-# ingestion/request_builder.py
-
 import yaml
 import os
 from config.cities import CITIES
